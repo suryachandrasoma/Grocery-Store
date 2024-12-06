@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Store</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Fonts for professional look -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header Section */
+        .top-bar {
+            background-color: #8DC998; /* Green theme */
+            padding: 15px 0;
+        }
+
+        .top-bar .logo {
+            font-size: 24px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .top-bar .search-bar input {
+            max-width: 400px;
+        }
+
+        .top-bar .account-icon {
+            color: #fff;
+            font-size: 20px;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        /* Categories Bar */
+        .categories-bar {
+            background-color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .categories-bar .category {
+            display: inline-block;
+            margin: 0 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .categories-bar .category:hover {
+            transform: scale(1.1);
+        }
+
+        .categories-bar .category img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%; /* Round icons */
+            object-fit: cover;
+            border: 3px solid #8DC998; /* Green outline */
+        }
+
+        .categories-bar .category span {
+            display: block;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Carousel Banner */
+        .carousel-inner img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px; /* Rounded corners */
+        }
+
+        .carousel-container {
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30px;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #8DC998; /* Green theme */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Login and Signup Modal */
+        .auth-modal .modal-header {
+            background-color: #8DC998;
+            color: #fff;
+        }
+
+        .auth-modal .modal-footer {
+            background-color: #f8f9fa;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Section with Top Bar (Logo + Search + User Icon) -->
+    <header class="top-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">Grocery Store</div>
+            <div class="search-bar">
+                <input type="text" class="form-control" placeholder="Search for products...">
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-link account-icon dropdown-toggle" type="button" id="accountDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i> <!-- Account Icon -->
+                </button>
+                <div class="dropdown-menu" aria-labelledby="accountDropdown">
+                    <a class="dropdown-item" href="login.html">Login</a>
+                    <a class="dropdown-item" href="signup.html">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Categories Bar -->
+    <section class="categories-bar">
+        <div class="container">
+            <div class="category">
+                <a href="/category/staples">
+                    <img src="{{ url_for('static', filename='images/Staples.jpg') }}" alt="Staples">
+                    <span>Staples</span>
+                </a>
+            </div>
+            <div class="category">
+                <a href="/category/snacks">
+                    <img src="{{ url_for('static', filename='images/Snacks & Biscuits.webp') }}" alt="Snacks & Beverages">
+                    <span>Snacks & Beverages</span>
+                </a>
+            </div>
+            <div class="category">
+                <a href="/category/packed-food">
+                    <img src="{{ url_for('static', filename='images/ac8550.webp') }}" alt="Packed Food">
+                    <span>Packed Food</span>
+                </a>
+            </div>
+            <div class="category">
+                <a href="/category/personal-baby-care">
+                    <img src="{{ url_for('static', filename='images/Personal & babycare.webp') }}" alt="Personal & Baby Care">
+                    <span>Personal & Baby Care</span>
+                </a>
+            </div>
+            <div class="category">
+                <a href="/category/household-care">
+                    <img src="{{ url_for('static', filename='images/Household.webp') }}" alt="Household Care">
+                    <span>Household Care</span>
+                </a>
+            </div>
+            <div class="category">
+                <a href="/category/dairy-eggs">
+                    <img src="{{ url_for('static', filename='images/Dairy & eggs.webp') }}" alt="Dairy & Eggs">
+                    <span>Dairy & Eggs</span>
+                </a>
+            </div>
+            <div class="category">
+                <a href="/category/home-kitchen">
+                    <img src="{{ url_for('static', filename='images/Home & Kitchen.webp') }}" alt="Home & Kitchen">
+                    <span>Home & Kitchen</span>
+                </a>
+            </div>
+            <div class="category">
+                <a href="/category/fruits-vegetables">
+                    <img src="{{ url_for('static', filename='images/Fruits & Vegitables.webp') }}" alt="Fruits & Vegetables">
+                    <span>Fruits & Vegetables</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Banner -->
+    <section class="carousel-container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <!-- First Banner Image -->
+                    <img src="{{ url_for('static', filename='images/SHAMPOO_CATEGORY_BANNER.webp') }}" class="d-block w-100" alt="Shampoo Category Banner">
+                </div>
+                <div class="carousel-item">
+                    <!-- Second Banner Image -->
+                    <img src="{{ url_for('static', filename='images/IBBN-SB111814265-28019.webp') }}" class="d-block w-100" alt="Second Banner">
+                </div>
+                <div class="carousel-item">
+                    <!-- Third Banner Image -->
+                    <img src="{{ url_for('static', filename='images/IBBN-SB111814265-28018.webp') }}" class="d-block w-100" alt="Third Banner">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Grocery Store. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
